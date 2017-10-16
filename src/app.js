@@ -4,6 +4,10 @@ import QueueAnim from 'rc-queue-anim';
 import { TweenOneGroup } from 'rc-tween-one';
 import Icon from 'antd/lib/icon';
 import PropTypes from 'prop-types';
+import BG01 from './static/01.jpg';
+import BG02 from './static/02.jpg';
+import BG03 from './static/04.jpg';
+import loadCanvas from './canvas';
 
 import 'index.css';
 import 'antd/dist/antd.css';
@@ -12,28 +16,45 @@ const Element = BannerAnim.Element;
 
 let dataArray = [
   {
-    pic: 'https://zos.alipayobjects.com/rmsportal/ogXcvssYXpECqKG.png',
-    map: 'https://zos.alipayobjects.com/rmsportal/XRfQxYENhzbfZXt.png',
+    pic: BG02,
     color: '#FFF43D',
     background: '#F6B429',
-    title: '',
-    content: ''
+    title: '不具名的主题',
+    content: (<span>
+      嗨~
+      <br /><br />不知道从哪里说起，现如今的通信那么方便，不过请求、响应之间，但总觉着少了点什么，也许是称作仪式感的东西。
+      <br /><br />从前的马车很慢，书信很远，要维持一份友情，悠悠思念足矣。
+      <br /><br />而现在，短信穿过小山，拂过湖面，余温早已不再。
+    </span>)
   },
   {
-    pic: 'https://zos.alipayobjects.com/rmsportal/iCVhrDRFOAJnJgy.png',
-    map: 'https://zos.alipayobjects.com/rmsportal/XRfQxYENhzbfZXt.png',
+    pic: BG01,
     color: '#FF4058',
     background: '#FC1E4F',
-    title: '',
-    content: ''
+    title: '独白',
+    content: (
+      <span>
+        我自制力特别差，一直不敢加你；这不，听说你说你有女朋友了，想想总不会胡思乱想了，哈哈～
+        <br /><br />原本是想加了你，安安静静放在列表里，但是，我自制力着实差了些，你得感谢我的列表里一直没有你。
+        <br /><br />我有个习惯，想一个人了，会找个人聊天，聊着聊着，感觉那份思念是不存在的。
+        <br /><br />但是，我忘记了一件事情，有些东西是愈酿愈醇～
+        <br /><br />从前的我总爱口是心非、言不由衷，现在的我仍旧是任性的，明知不可为而为之。就让我再自私一次吧。
+        <br /><br />另，我半夜智商为零●ω●，请忽略。
+      </span>
+    )
   },
   {
-    pic: 'https://zos.alipayobjects.com/rmsportal/zMswSbPBiQKvARY.png',
-    map: 'https://zos.alipayobjects.com/rmsportal/XRfQxYENhzbfZXt.png',
+    pic: BG03,
     color: '#9FDA7F',
     background: '#64D487',
-    title: '',
-    content: ''
+    title: 'Best Wishes',
+    content: (
+      <span>
+        最后，送上我诚挚的祝福！
+        <br /><br />你值得拥有最好的～
+        <br /><br />愿你被岁月温柔以待，愿你温暖如初！
+      </span>
+    )
   },
 ];
 // dataArray = dataArray.map(item => ({ ...item, ...textData }));
@@ -104,6 +125,10 @@ class DetailSwitchDemo extends React.Component {
     return 1000;
   };
 
+  componentDidMount() {
+    loadCanvas(document.getElementById('Mycanvas'));
+  }
+
   render() {
     const imgChildren = dataArray.map((item, i) =>
       <Element key={i} style={{ background: item.color }} hideProps>
@@ -136,6 +161,7 @@ class DetailSwitchDemo extends React.Component {
       className={`${this.props.className}-wrapper`}
       style={{ background: dataArray[this.state.showInt].background }}
     >
+      <canvas id="Mycanvas" />
       <div className={this.props.className}>
         <BannerAnim
           prefixCls={`${this.props.className}-img-wrapper`}
